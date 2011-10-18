@@ -69,8 +69,3 @@ ScriptInclude.isQueueLoaded = function(queueNumber) {
 		return true;
 	}
 };
-
-// Some default includes
-ScriptInclude.defineIncludes({
-	'jquery': 'jquery.js'
-});

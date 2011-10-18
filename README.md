@@ -26,19 +26,7 @@ ScriptInclude.include('backbone.js', 'jquery.js', function() {
 
 You can include as many files as you want.
 
-### Include predefined libraries ###
-
-```javascript
-ScriptInclude.include('jquery', function() {
-	// jQuery has been loaded
-});
-
-ScriptInclude predefines the following libraries:
-* jQuery
-* Prototype
-* Handlebars
-
-### Define your own includes ###
+### Define your own include "aliases" ###
 
 ```javascript
 ScriptInclude.defineIncludes({
@@ -48,16 +36,7 @@ ScriptInclude.defineIncludes({
 ScriptInclude.include('three', 'myLibrary');
 ```
 
-You can execute the `defineIncludes()` function as many times as you like, though only one usage is recommended.
-
-### Overwrite the default includes ###
-
-```javascript
-ScriptInclude.defineIncludes({
-	'jquery': '/my/path/to/jquery.js'
-});
-ScriptInclude.include('jquery');
-```
+You can execute the `defineIncludes()` function as many times as you like, though only one usage is recommended. `defineIncludes` will overwrite old data if it exists.
 
 ### Is the queue loaded? ###
 
