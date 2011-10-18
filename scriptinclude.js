@@ -1,8 +1,7 @@
 /*	ScriptInclude v1.0
 	by Evan Hahn
 
-	ScriptInclude allows you to asynchronously load <script> tags into
-	the browser. */
+	Load <script> tags into the browser asynchronously. */
 
 // Namespace
 var ScriptInclude = ScriptInclude || Object.create(null);
