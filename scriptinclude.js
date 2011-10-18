@@ -19,7 +19,7 @@ ScriptInclude.defineIncludes = function(object) {
 ScriptInclude.include = function() {
 
 	var size = arguments.length;
-	
+
 	// If the last one is a function, we'll execute it
 	var hasCallback = arguments[size - 1] instanceof Function;
 	if (hasCallback) {
@@ -33,9 +33,9 @@ ScriptInclude.include = function() {
 
 	// Load them all
 	for (var i = 0; i < size; i ++) {
-		
+
 		var script = document.createElement('script');
-		
+
 		// If the script is defined with an alias, load the predefined script
 		if (ScriptInclude.includes && ScriptInclude.includes[arguments[i]]) {
 			script.src = ScriptInclude.includes[arguments[i]];
@@ -53,7 +53,7 @@ ScriptInclude.include = function() {
 			};
 			script.onerror = script.onload;
 		}
-	
+
 		document.head.appendChild(script);
 	}
 
