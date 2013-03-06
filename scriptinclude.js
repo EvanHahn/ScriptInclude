@@ -4,10 +4,10 @@
 	Load <script> tags into the browser asynchronously. */
 
 // Namespace
-var ScriptInclude = ScriptInclude || Object.create(null);
+var ScriptInclude = ScriptInclude || {};
 
 // Define includes
-ScriptInclude.includes = Object.create(null);
+ScriptInclude.includes = {};
 ScriptInclude.defineIncludes = function(object) {
 	for (key in object) {
 		ScriptInclude.includes[key] = object[key];
