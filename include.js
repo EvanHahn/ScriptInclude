@@ -6,6 +6,8 @@
 
 ;(function() {
 
+	document.head || (document.head = document.getElementsByTagName("head")[0]);
+
 	var include = function() {
 
 		var toLoad = arguments.length;
