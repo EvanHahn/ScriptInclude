@@ -8,6 +8,8 @@
 
 	document.head || (document.head = document.getElementsByTagName("head")[0]);
 
+	var noop = function() {};
+
 	var include = function() {
 
 		var toLoad = arguments.length;
@@ -18,7 +20,7 @@
 			toLoad --;
 			callback = arguments[arguments.length - 1];
 		} else {
-			callback = function() {};
+			callback = noop;
 		}
 
 		var script;
