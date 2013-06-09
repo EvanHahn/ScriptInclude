@@ -6,7 +6,8 @@
 
 ;(function() {
 
-	document.head || (document.head = document.getElementsByTagName("head")[0]);
+	var doc = document;
+	var head = doc.head || (doc.getElementsByTagName("head")[0]);
 
 	var noop = function() {};
 
@@ -26,7 +27,7 @@
 		var script;
 		for (var i = 0; i < toLoad; i ++) {
 
-			script = document.createElement("script");
+			script = doc.createElement("script");
 			script.src = arguments[i];
 
 			script.onload = script.onerror = function() {
@@ -35,7 +36,7 @@
 					callback.call();
 			};
 
-			document.head.appendChild(script);
+			head.appendChild(script);
 
 		}
 
