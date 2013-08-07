@@ -1,50 +1,54 @@
+/*jslint browser: true*/
+
 /* ScriptInclude
  * https://github.com/EvanHahn/ScriptInclude
  * by Evan Hahn
  * License: Unlicense
  */
 
-;(function() {
+(function (doc) {
+    "use strict";
 
-	var doc = document;
-	var head = doc.head || (doc.getElementsByTagName("head")[0]);
+    var head = doc.head || (doc.getElementsByTagName("head")[0]),
 
-	var noop = function() {};
+        noop = function () {
+            return;
+        },
 
-	var include = function() {
+        include = function () {
 
-		var toLoad = arguments.length;
+            var toLoad = arguments.length,
+                callback,
+                hasCallback = arguments[toLoad - 1] instanceof Function,
+                script,
+                i,
+                onloaded = function () {
+                    toLoad -= 1;
+                    if (toLoad === 0) {
+                        callback.call();
+                    }
+                };
 
-		var callback;
-		var hasCallback = arguments[toLoad - 1] instanceof Function;
-		if (hasCallback) {
-			toLoad --;
-			callback = arguments[arguments.length - 1];
-		} else {
-			callback = noop;
-		}
+            if (hasCallback) {
+                toLoad -= 1;
+                callback = arguments[arguments.length - 1];
+            } else {
+                callback = noop;
+            }
 
-		var script;
-		for (var i = 0; i < toLoad; i ++) {
+            for (i = 0; i < toLoad; i += 1) {
+                script = doc.createElement("script");
+                script.src = arguments[i];
 
-			script = doc.createElement("script");
-			script.src = arguments[i];
+                script.onload = script.onerror = onloaded;
+                head.appendChild(script);
+            }
+        };
 
-			script.onload = script.onerror = function() {
-				toLoad --;
-				if (toLoad === 0)
-					callback.call();
-			};
+    if (typeof exports !== "undefined") {
+        exports = include;
+    } else {
+        this.include = include;
+    }
 
-			head.appendChild(script);
-
-		}
-
-	};
-
-	if (typeof exports !== "undefined")
-		exports = include;
-	else
-		this.include = include;
-
-})();
+}(document));
