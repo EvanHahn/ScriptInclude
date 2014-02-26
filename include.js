@@ -45,8 +45,8 @@
             }
         };
 
-    if (typeof exports !== "undefined") {
-        exports = include;
+    if (typeof module !== "undefined") {
+        module.exports = include;
     } else {
         this.include = include;
     }
