@@ -55,8 +55,3 @@ include('underscore.js', 'backbone.js', function() {
 ```
 
 You can include as many files as you want.
-
-Licensing
----------
-
-ScriptInclude is licensed under the Unlicense. More info can be found in LICENSE.txt.
