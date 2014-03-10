@@ -1,54 +1,34 @@
-/*jslint browser: true*/
+window['include'] = function() {
 
-/* ScriptInclude
- * https://github.com/EvanHahn/ScriptInclude
- * by Evan Hahn
- * License: Unlicense
- */
+	var toLoad = arguments.length;
+	var callback;
+	var hasCallback = arguments[toLoad - 1] instanceof Function;
+	var script;
 
-(function (doc) {
-    "use strict";
+	function onloaded() {
+		toLoad --;
+		if (!toLoad) {
+			callback();
+		}
+	}
 
-    var head = doc.head || (doc.getElementsByTagName("head")[0]),
+	if (hasCallback) {
+		toLoad --;
+		callback = arguments[arguments.length - 1];
+	} else {
+		callback = function() {}; // noop
+	}
 
-        noop = function () {
-            return;
-        },
+	for (var i = 0; i < toLoad; i ++) {
 
-        include = function () {
+		script = document.createElement('script');
+		script.src = arguments[i];
+		script.onload = script.onerror = onloaded;
+		(
+			document.head ||
+			document.getElementsByTagName('head')[0]
+		).appendChild(script);
 
-            var toLoad = arguments.length,
-                callback,
-                hasCallback = arguments[toLoad - 1] instanceof Function,
-                script,
-                i,
-                onloaded = function () {
-                    toLoad -= 1;
-                    if (toLoad === 0) {
-                        callback.call();
-                    }
-                };
+	}
 
-            if (hasCallback) {
-                toLoad -= 1;
-                callback = arguments[arguments.length - 1];
-            } else {
-                callback = noop;
-            }
-
-            for (i = 0; i < toLoad; i += 1) {
-                script = doc.createElement("script");
-                script.src = arguments[i];
-
-                script.onload = script.onerror = onloaded;
-                head.appendChild(script);
-            }
-        };
-
-    if (typeof module !== "undefined") {
-        module.exports = include;
-    } else {
-        this.include = include;
-    }
-
-}(document));
+};

@@ -1,0 +1,21 @@
+{
+  "bitwise": true,
+  "camelcase": true,
+  "curly": false,
+  "eqeqeq": false,
+  "es3": true,
+  "freeze": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": true,
+  "plusplus": false,
+  "quotmark": true,
+  "undef": true,
+  "unused": true,
+  "strict": false,
+  "trailing": true,
+  "browser": true
+}
