@@ -67,7 +67,7 @@ include('underscore.js', 'backbone.js', function() {
 ```
 or
 ```javascript
-include('underscore.js', 'backbone.js', function() {
+$i('underscore.js', 'backbone.js', function() {
   // Underscore and Backbone are loaded in, let's go for it
 });
 ```
