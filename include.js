@@ -1,13 +1,16 @@
-window['include'] = function() {
+include = function() {
 
-	var toLoad = arguments.length;
+	var args = arguments;
+	var doc = document;
+
+	var toLoad = args.length;
 	var callback;
-	var hasCallback = arguments[toLoad - 1] instanceof Function;
+	var hasCallback = args[toLoad - 1] instanceof Function;
 	var script;
 
 	function onloaded() {
 		toLoad --;
-		if (!toLoad) {
+		if (!toLoad && callback) {
 			callback();
 		}
 	}
@@ -15,18 +18,16 @@ window['include'] = function() {
 	if (hasCallback) {
 		toLoad --;
 		callback = arguments[arguments.length - 1];
-	} else {
-		callback = function() {}; // noop
 	}
 
 	for (var i = 0; i < toLoad; i ++) {
 
-		script = document.createElement('script');
+		script = doc.createElement('script');
 		script.src = arguments[i];
 		script.onload = script.onerror = onloaded;
 		(
-			document.head ||
-			document.getElementsByTagName('head')[0]
+			doc.head ||
+			doc.getElementsByTagName('head')[0]
 		).appendChild(script);
 
 	}
