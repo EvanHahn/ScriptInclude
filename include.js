@@ -4,20 +4,19 @@ include = function() {
 	var doc = document;
 
 	var toLoad = args.length;
-	var callback;
-	var hasCallback = args[toLoad - 1] instanceof Function;
+  var lastArgument = args[toLoad - 1];
+	var hasCallback = lastArgument.call;
 	var script;
 
 	function onloaded() {
 		toLoad --;
-		if (!toLoad && callback) {
-			callback();
+		if (!toLoad && hasCallback) {
+			lastArgument();
 		}
 	}
 
 	if (hasCallback) {
 		toLoad --;
-		callback = arguments[arguments.length - 1];
 	}
 
 	for (var i = 0; i < toLoad; i ++) {
