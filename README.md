@@ -17,10 +17,7 @@ It's meant to be minified and inlined, like so:
   <script>
 
   // ScriptInclude, minified and inlined
-  window.include=function(){function f(){b--;b||c()}var a=arguments,d=document,b=a.length,c;
-  arguments[b-1]instanceof Function?(b--,c=a[a.length-1]):c=function(){};
-  for(var e=0;e<b;e++)a=d.createElement("script"),a.src=arguments[e],a.onload=a.onerror=f,
-  (d.head||d.getElementsByTagName("head")[0]).appendChild(a)};
+  include=function(){function g(){var a=this.readyState;if(!a||/ded|te/.test(a))b--,!b&&e&&f()}var a=arguments,c=document,b=a.length,f=a[b-1],e=f.call;e&&b--;for(var d=0;d<b;d++)a=c.createElement("script"),a.src=arguments[d],a.onload=a.onerror=a.onreadystatechange=g,(c.head||c.getElementsByTagName("head")[0]).appendChild(a)};
 
   // my stuff
   include('jquery.js', function() {
