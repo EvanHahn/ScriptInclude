@@ -8,6 +8,12 @@ describe("ScriptInclude", function() {
     expect($bar).toBeInDOM();
   });
 
+  it("injects <script> tags with the async property", function() {
+    include("foobar.js");
+    var $foobar = $("script[src='foobar.js']");
+    expect($foobar).toHaveProp("async", true);
+  });
+
   it("runs a callback after successfully loading a script", function(done) {
     include("helpers/exists.js", function() {
       done();
