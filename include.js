@@ -26,6 +26,7 @@ include = function() {
 
 		script = doc.createElement('script');
 		script.src = arguments[i];
+    script.async = true;
 		script.onload = script.onerror = script.onreadystatechange = onScriptLoaded;
 		(
 			doc.head ||
