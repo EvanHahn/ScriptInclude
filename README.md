@@ -8,10 +8,8 @@ ScriptInclude aims to be _tiny_ and easy to understand. There is no dependency m
 It's meant to be minified and inlined, like so:
 
 ```html
-<html>
 <!-- ... -->
 <body>
-
   <!-- ... -->
 
   <script>
@@ -26,8 +24,7 @@ It's meant to be minified and inlined, like so:
 
   </script>
 
-</body>
-</html>
+  <!-- ... -->
 ```
 
 Some example usage
